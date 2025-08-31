@@ -1,0 +1,204 @@
+.header-link {
+    position: absolute;
+    right: 40px;
+    color: #D9C6B5;
+    border: solid 1px #D9C6B5;
+    text-decoration: none;
+    background-color: rgba(240, 240, 240, 0.6);
+    width: 100px;
+    height: 34px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 横幅 */
+.main {
+    max-width: 1185px;
+    margin: auto;
+}
+
+/* ページタイトル */
+.page-title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: lighter;
+    margin: 40px 0 30px;
+}
+
+/* 検索フォーム */
+.search-box {
+    text-align: center;
+    margin: 0 auto 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 入力欄とセレクトボックス */
+.search-box__keyword {
+    font-size: 16px;
+    background-color: #FBFBFB;
+    border: 1px solid #E3DED9;
+    padding: 12px;
+    height: 26px;
+    width: 320px;
+    text-align: center;
+}
+
+.search-box__keyword::placeholder {
+    color: #D9C6B5;
+}
+
+.select-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.search-box__gender,
+.search-box__inquiry,
+.search-box__date {
+    font-size: 17px;
+    color: #8B7969;
+    background-color: #F4F4F4;
+    padding: 11px 45px 11px 20px;
+    border: 1px solid #E3DED9;
+    line-height: 26px;
+    box-sizing: border-box;
+    /* 余白込みでwidthを計算 */
+}
+
+.search-box__date {
+    width: 150px;
+}
+
+/* select, date の標準アイコンを消す */
+.select-wrap select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+/* Chrome の date のカレンダーアイコンを消す */
+.search-box__date::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+    padding-right: 45px;
+}
+
+/* ▼アイコンをSVGで追加 */
+.select-wrap::after {
+    content: "";
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-55%);
+    width: 17.22px;
+    height: 20px;
+    background: url("../img/icon-triangle.svg") no-repeat center;
+    background-size: contain;
+    pointer-events: none;
+}
+
+/* ボタン */
+.search-box .btn {
+    background-color: #8c7569;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    width: 100px;
+}
+
+.search-box .btn:hover {
+    background-color: #82756A;
+}
+
+.search-box .btn.reset {
+    background-color: #D9C6B5;
+    color: #FFFFFF;
+}
+
+
+/* ページネーション */
+.pagination {
+    text-align: right;
+    /* width: 220px; */
+    margin: 20px 0px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pagination a+a {
+    border-left: none;
+}
+
+.pagination a:first-child {
+    border-radius: 7px 0 0 7px;
+}
+
+.pagination a:last-child {
+    border-radius: 0 7px 7px 0;
+}
+
+.pagination a {
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: #8B7969;
+    font-size: 18px;
+    /* padding: 0px 10px; */
+    border: 1px solid #E0DFDE;
+}
+
+.pagination a.active {
+    background-color: #8c7569;
+    color: #fff;
+}
+
+
+/* 問い合わせ一覧 */
+.table-box {
+    max-width: 1185px;
+    margin: 0 auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+thead {
+    background-color: #8c7569;
+    color: #fff;
+}
+
+th {
+    font-weight: bold;
+    height: 40px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+    padding: 10px 55px;
+    text-align: left;
+    font-size: 18px;
+    height: 50px;
+}
+
+.btn.detail {
+    background-color: rgba(244, 244, 244, 0.3);
+    border: 1px solid rgba(217, 198, 181, 0.6);
+    color: #D9C6B5;
+    width: 75px;
+    height: 40px;
+    padding: 8px 20px;
+}
