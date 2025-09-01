@@ -1,0 +1,89 @@
+.header-link {
+    position: absolute;
+    right: 40px;
+    color: #D9C6B5;
+    border: solid 1px #D9C6B5;
+    text-decoration: none;
+    background-color: rgba(240, 240, 240, 0.6);
+    width: 100px;
+    height: 34px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 背景色 */
+body {
+    background-color: #F1ECE7;
+}
+
+/* ページタイトル */
+.page-title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: lighter;
+    margin: 60px 0;
+}
+
+/* フォーム枠 */
+.form-box {
+    background: #fff;
+    max-width: 445px;
+    margin: 0 auto 75px;
+    padding: 75px 145px 60px;
+    border: 1px solid #C5B9B0;
+    border-radius: 7px;
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.form-box form {
+    display: flex;
+    flex-direction: column;
+    /* padding: 20%; */
+}
+
+.form-box label {
+    /* bodyのフォントが継承されていたため、ゴシック調に再指定 */
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+
+    margin-bottom: 6px;
+    font-size: 25px;
+}
+
+.form-box input {
+    /* inputタグはbodyのフォントが継承されないので再指定 */
+    font-family: "Inika", serif;
+    font-weight: 400;
+    font-style: regular;
+
+    background-color: #F4F4F4;
+    font-size: 14px;
+    margin-bottom: 45px;
+    padding: 25px 18px;
+    border: 1px solid #F4F4F4;
+    font-weight: lighter;
+}
+
+.form-box input::placeholder {
+    color: #BEB1A6;
+}
+
+.form-box button {
+    align-self: center;
+    width: auto;
+    margin-top: 15px;
+}
+
+/* ボタン */
+.btn {
+    background-color: #8c7569;
+    color: #fff;
+    border: none;
+    padding: 10px 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+}

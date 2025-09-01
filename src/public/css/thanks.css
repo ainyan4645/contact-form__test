@@ -1,0 +1,53 @@
+body {
+    font-family: "Inika", serif;
+    font-weight: 400;
+    font-style: regular;
+    margin: 0;
+    color: #8B7969;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    height: 100vh;
+}
+
+/* 背景に透かし文字 */
+body::before {
+    content: "Thank you";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    color: rgba(139, 121, 105, 0.05);
+    /* 薄いブラウン */
+    z-index: 0;
+    white-space: nowrap;
+}
+
+.thanks {
+    position: relative;
+    top: 40%;
+    transform: translateY(-40%);
+    z-index: 1;
+}
+
+.thanks h2 {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #8B7969;
+}
+
+.thanks a {
+    display: inline-block;
+    background-color: #8B7969;
+    color: #fff;
+    padding: 12px 40px;
+    /* border-radius: 4px; */
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.thanks a:hover {
+    background-color: #6f6054;
+}
