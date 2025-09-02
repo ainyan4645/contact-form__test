@@ -8,7 +8,7 @@
 
 <div class="form">
     <h2>Contact</h2>
-    <form>
+    <form action="/confirm" method="post">
         @csrf
         <div>
             <label>お名前 <span>※</span></label>

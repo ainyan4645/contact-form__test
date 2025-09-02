@@ -16,13 +16,10 @@ use App\Http\Controllers\ContactController;
 
 Route::get('/', [ContactController::class, 'contact']);
 
-Route::get('/confirm', function () {
-    return view('confirm');
-});
+Route::post('/confirm', [ContactController::class, 'confirm']);
+Route::post('/store', [ContactController::class, 'store']);
 
-Route::get('/thanks', function () {
-    return view('thanks');
-});
+
 
 Route::get('/register', function () {
     return view('register');
