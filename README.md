@@ -14,6 +14,9 @@
 5. cp .env.example .env
 6. docker-compose exec php bash
 7. php artisan key:generate
+8. composer require laravel/fortify
+9. php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+
 
 - migrationとシーディングは後で。
 - 時刻のずれは大丈夫？

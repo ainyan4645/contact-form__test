@@ -5,7 +5,13 @@
 @endsection
 
 @section('navi')
-<a href="logout.html" class="header-link">logout</a>
+@if (Auth::check())
+<form class="form" action="/logout" method="post">
+    @csrf
+    <button class="header-nav__button">logout</button>
+</form>
+@endif
+<!-- <a href="logout.html" class="header-link">logout</a> -->
 @endsection
 
 @section('content')

@@ -1,29 +1,27 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/register.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/auth/login.css') }}" />
 @endsection
 
 @section('navi')
-<a href="logout.html" class="header-link">login</a>
+<a href="register.html" class="header-link">register</a>
 @endsection
 
 @section('content')
 
 <main class="main">
-    <h2 class="page-title">Register</h2>
+    <h2 class="page-title">Login</h2>
     <div class="form-box">
-        <form>
-            <label for="name">お名前</label>
-            <input type="text" id="name" placeholder="例: 山田　太郎">
-
+        <form action="/login" method="post">
+            @csrf
             <label for="email">メールアドレス</label>
             <input type="email" id="email" placeholder="例: test@example.com">
 
             <label for="password">パスワード</label>
             <input type="password" id="password" placeholder="例: coachtech1106">
 
-            <button type="submit" class="btn">登録</button>
+            <button type="submit" class="btn">ログイン</button>
         </form>
     </div>
 </main>
