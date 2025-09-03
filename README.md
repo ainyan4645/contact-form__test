@@ -14,7 +14,18 @@
 5. cp .env.example .env
 6. docker-compose exec php bash
 7. php artisan key:generate
- migrationとシーディングは後で。
+
+- migrationとシーディングは後で。
+- 時刻のずれは大丈夫？
+ ```
+ php artisan tinker
+ echo Carbon\Carbon::now();
+```
+
+ ※permissionエラーが出る場合は `/contact-form__test` ディレクトリで以下のコマンドを実行してください。
+ ```bash
+ sudo chmod -R 777 src/*
+ ```
 
 ## 使用技術(実行環境)
 - php 8.2
