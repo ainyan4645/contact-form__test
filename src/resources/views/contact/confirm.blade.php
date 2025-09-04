@@ -7,13 +7,13 @@
 @section('content')
 <div class="confirm">
     <h2>Confirm</h2>
-    <form action="/store" method="post">
+    <form action="/thanks" method="post">
         @csrf
         <table>
             <tr>
                 <th>お名前</th>
                 <td>
-                    <input type="text" name="name" value="{{ $contact['last_name']　['first_name'] }}" readonly />
+                    <input type="text" name="name" value="{{ $contact['last_name'] }}　{{ ['first_name'] }}" readonly />
                 </td>
             </tr>
             <tr>

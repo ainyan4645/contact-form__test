@@ -15,12 +15,13 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+/* 問い合わせフォーム */
 Route::get('/', [ContactController::class, 'contact']);
 
 Route::post('/confirm', [ContactController::class, 'confirm']);
-Route::post('/store', [ContactController::class, 'store']);
+Route::post('/thanks', [ContactController::class, 'store']);
 
-
+/* 管理ページ */
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AuthController::class, 'admin']);
 });
