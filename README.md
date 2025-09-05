@@ -16,6 +16,8 @@
 7. php artisan key:generate
 8. composer require laravel/fortify
 9. php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+10. php artisan migrate
+11. php artisan db:seed
 
 
 - migrationとシーディングは後で。
@@ -37,9 +39,10 @@
 - nginx 1.24
 
 ## ER図
-
+![contact-form_ER](./contact-form_ER.drawio.svg)
 
 ## URL
-- 開発環境： http://localhost/
+- お問い合わせフォーム： http://localhost/
+- 管理画面：http://localhost/admin
 - phpMyAdmin： http://localhost:8080/
 

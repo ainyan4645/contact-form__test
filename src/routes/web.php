@@ -22,9 +22,12 @@ Route::post('/confirm', [ContactController::class, 'confirm']);
 Route::post('/thanks', [ContactController::class, 'store']);
 
 /* 管理ページ */
+Route::get('/admin', [ContactController::class, 'admin']);
+/*
 Route::middleware('auth')->group(function () {
-    Route::get('/admin', [AuthController::class, 'admin']);
+Route::get('/admin', [AuthController::class, 'admin']);
 });
+*/
 
 Route::get('/register', function () {
     return view('register');

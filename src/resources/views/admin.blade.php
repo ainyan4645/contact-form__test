@@ -43,13 +43,14 @@
     </form>
 
     <div class="pagination">
-        <a href="#">&lt;</a>
+         {{ $contacts->links() }}
+        <!-- <a href="#">&lt;</a>
         <a href="#" class="active">1</a>
         <a href="#">2</a>
         <a href="#">3</a>
         <a href="#">4</a>
         <a href="#">5</a>
-        <a href="#">&gt;</a>
+        <a href="#">&gt;</a> -->
     </div>
 
     <div class="table-box">
@@ -64,14 +65,15 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach($contacts as $contact)
                 <tr>
-                    <td>山田　太郎</td>
-                    <td>男性</td>
-                    <td>test@example.com</td>
+                    <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
+                    <td>{{ $contact->gender }}</td>
+                    <td>{{ $contact->email }}</td>
                     <td>商品の交換について</td>
-                    <td><label for="modal-toggle-1" class="btn detail">詳細</label></td>
+                    <td><label for="modal-toggle-{{ $contact->id }}" class="btn detail">詳細</label></td>
                 </tr>
-                <!-- 繰り返しデータ -->
+                @endforeach
             </tbody>
         </table>
     </div>
