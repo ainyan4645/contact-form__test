@@ -13,13 +13,13 @@
 <main class="main">
     <h2 class="page-title">Login</h2>
     <div class="form-box">
-        <form action="/login" method="post">
+        <form action="{{ route('login') }}" method="post">
             @csrf
             <label for="email">メールアドレス</label>
-            <input type="email" id="email" placeholder="例: test@example.com">
+            <input type="email" name="email" id="email" placeholder="例: test@example.com" required autofocus>
 
             <label for="password">パスワード</label>
-            <input type="password" id="password" placeholder="例: coachtech1106">
+            <input type="password" name="password" id="password" placeholder="例: coachtech1106" required>
 
             <button type="submit" class="btn">ログイン</button>
         </form>
