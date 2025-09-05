@@ -22,7 +22,9 @@ Route::post('/confirm', [ContactController::class, 'confirm']);
 Route::post('/thanks', [ContactController::class, 'store']);
 
 /* 管理ページ */
-Route::get('/admin', [ContactController::class, 'admin']);
+Route::get('/admin', [ContactController::class, 'admin'])->name('admin.admin');
+Route::get('/search', [AdminController::class, 'search'])->name('admin.search');
+Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 /*
 Route::middleware('auth')->group(function () {
 Route::get('/admin', [AuthController::class, 'admin']);
