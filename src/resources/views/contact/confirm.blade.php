@@ -13,55 +13,68 @@
             <tr>
                 <th>お名前</th>
                 <td>
-                    <input type="text" name="name" value="{{ $contact['last_name'] }}　{{ ['first_name'] }}" readonly />
+                    {{ $contact['last_name'] }}　{{ $contact['first_name'] }}
+                    <input type="hidden" name="last_name" value="{{ $contact['last_name'] }}">
+                    <input type="hidden" name="first_name" value="{{ $contact['first_name'] }}">
                 </td>
             </tr>
             <tr>
                 <th>性別</th>
                 <td>
-                    <input type="text" name="gender" value="{{ $contact['gender'] }}" readonly />
+                    @php
+                    $genderText = ['1' => '男性', '2' => '女性', '3' => 'その他'];
+                    @endphp
+
+                    {{ $genderText[$contact['gender']] }}
+                    <input type="hidden" name="gender" value="{{ $contact['gender'] }}">
                 </td>
             </tr>
             <tr>
                 <th>メールアドレス</th>
                 <td>
-                    <input type="text" name="email" value="{{ $contact['email'] }}" readonly />
+                    {{ $contact['email'] }}
+                    <input type="hidden" name="email" value="{{ $contact['email'] }}">
                 </td>
             </tr>
             <tr>
                 <th>電話番号</th>
                 <td>
-                    <input type="text" name="tel" value="{{ $contact['tel'] }}" readonly />
+                    {{ $contact['tel'] }}
+                    <input type="hidden" name="tel" value="{{ $contact['tel'] }}">
                 </td>
             </tr>
             <tr>
                 <th>住所</th>
                 <td>
-                    <input type="text" name="address" value="{{ $contact['address'] }}" readonly />
+                    {{ $contact['address'] }}
+                    <input type="hidden" name="address" value="{{ $contact['address'] }}">
                 </td>
             </tr>
             <tr>
                 <th>建物名</th>
                 <td>
-                    <input type="text" name="building" value="{{ $contact['building'] }}" readonly />
+                    {{ $contact['building'] }}
+                    <input type="hidden" name="building" value="{{ $contact['building'] }}">
                 </td>
             </tr>
             <tr>
                 <th>お問い合わせの種類</th>
                 <td>
-                    <input type="text" name="content" value="{{ $contact['content'] }}" readonly />
+                    {{ $contact['category_name'] }}
+                    <input type="hidden" name="category_id" value="{{ $contact['category_id'] }}">
                 </td>
             </tr>
             <tr>
                 <th>お問い合わせ内容</th>
                 <td>
-                    <input type="text" name="detail" value="{{ $contact['detail'] }}" readonly />
+                    {{ $contact['detail'] }}
+                    <input type="hidden" name="detail" value="{{ $contact['detail'] }}">
                 </td>
             </tr>
         </table>
 
-        <button>送信</button>
-        <button>修正</button>
+        <button type="submit">送信</button>
+        <button type="button" onclick="window.location='{{ url('/') }}'">修正</button>
     </form>
 </div>
 @endsection

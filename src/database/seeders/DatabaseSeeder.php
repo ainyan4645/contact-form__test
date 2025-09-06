@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CategoriesTableSeeder::class);
         
-        Author::factory(35)->create();
+        Contact::factory(35)->create();
     }
 }

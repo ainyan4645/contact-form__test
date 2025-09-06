@@ -12,21 +12,45 @@ class ContactController extends Controller
     // お問い合わせフォーム
     public function contact()
     {
-        return view('contact.contact');
+        $categories = \App\Models\Category::all();
+        return view('contact.contact', compact('categories'));
     }
 
     public function confirm(ContactRequest $request)
     {
-        $contact = $request->validated();
+        $request->flash(); // 入力内容をセッションに保持(修正ボタンで戻るため)
+
+        $contact = $request->validated(); // バリデーション済みの値を取得
+
+        // 電話番号を結合
+        $contact['tel'] = $contact['tel1'] . $contact['tel2'] . $contact['tel3'];
+
+        // category_id からカテゴリ名を取得して新しいキーに格納
+        $contact['category_name'] = \App\Models\Category::find($contact['category_id'])->content;
+
         return view('contact.confirm', compact('contact'));
     }
 
-    public function store(ContactRequest $request)
+    public function store(Request $request)
     {
-        $contact = $request->validated();
-        Contact::create($contact);
+        Contact::create($request->only([
+            'category_id',
+            'first_name',
+            'last_name',
+            'gender',
+            'email',
+            'tel',
+            'address',
+            'building',
+            'detail',
+        ]));
+
+        // 入力値をセッションから削除（リセット用）
+        $request->session()->forget('_old_input');
+    
         return view('contact.thanks');
     }
+
 
     // 管理画面(初期表示)
     public function admin()
@@ -34,7 +58,7 @@ class ContactController extends Controller
         $contacts = Contact::with('category')->Paginate(7); // リレーションも一緒に取得
         $categories = Category::all(); // カテゴリ一覧を渡す
 
-    return view('admin', compact('contacts' 'categories'));
+    return view('admin', compact('contacts', 'categories'));
     }
 
     // 検索処理

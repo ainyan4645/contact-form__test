@@ -5,7 +5,7 @@
 @endsection
 
 @section('navi')
-<a href="logout.html" class="header-link">login</a>
+<a href="" class="header-link">login</a>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
 <main class="main">
     <h2 class="page-title">Register</h2>
     <div class="form-box">
-        <form action="{{ route('register') }}" method="post">
+        <form action="/register" method="post">
             @csrf
             <label for="name">お名前</label>
             <input type="text" name="name" id="name" placeholder="例: 山田　太郎" required>

@@ -9,7 +9,7 @@
 <body>
     <div class="thanks">
         <h2>お問い合わせありがとうございました</h2>
-        <a>HOME</a>
+        <a href="{{ url('/') }}">HOME</a>
     </div>
 </body>
 </html>

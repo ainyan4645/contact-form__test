@@ -29,9 +29,9 @@ class ContactRequest extends FormRequest
         'last_name' => 'required',
         'gender' => 'required',
         'email' => 'required|email',
-        'tel1' => '',
-        'tel2' => '',
-        'tel3' => '',
+        'tel1' => 'required',
+        'tel2' => 'required',
+        'tel3' => 'required',
         'address' => 'required',
         'building' => '',
         'detail' => 'required|max:120',
@@ -41,13 +41,12 @@ class ContactRequest extends FormRequest
     public function messages()
     {
         return [
-            'category_id' => 'お問い合わせの種類を選択してください',
+            'category_id.required' => 'お問い合わせの種類を選択してください',
             'first_name.required' => '名を入力してください',
             'last_name.required' => '性を入力してください',
             'gender.required' => '性別を入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスはメール形式で入力してください',
-            'tel.required' => '電話番号を入力してください',
             'address.required' => '住所を入力してください',
             'detail.required' => 'お問い合わせ内容を入力してください',
             'detail.max' => 'お問合わせ内容は120文字以内で入力してください',
@@ -63,17 +62,5 @@ class ContactRequest extends FormRequest
                 $validator->errors()->add('tel', '電話番号を入力してください');
             }
         });
-    }
-
-    /** validated()を拡張してtelを結合 **/
-    public function validated($key = null, $default = null)
-    {
-        $data = parent::validated();
-
-        $data['tel'] = $this->tel1.$this->tel2.$this->tel3;
-
-        unset($data['tel1'], $data['tel2'], $data['tel3']);
-
-        return $data;
     }
 }

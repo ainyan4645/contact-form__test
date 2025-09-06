@@ -23,8 +23,8 @@ Route::post('/thanks', [ContactController::class, 'store']);
 
 /* 管理ページ */
 Route::get('/admin', [ContactController::class, 'admin'])
-     ->name('admin.admin')
-     ->middleware('auth');
+    ->name('admin.admin')
+    ->middleware('auth');
 
 // Route::get('/admin', function () {
 //     return view('admin');
@@ -39,7 +39,7 @@ Route::get('/admin', [AuthController::class, 'admin']);
 */
 
 Route::get('/register', function () {
-    return view('register');
+    return view('auth.register');
 });
 
 Route::get('/login', function () {
