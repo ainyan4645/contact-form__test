@@ -46,8 +46,23 @@
     </form>
 
     <div class="pagination">
-        {{ $contacts->links() }}
-        <!-- <a href="#">&lt;</a>
+        {{-- 前ページ --}}
+        @if($contacts->currentPage() > 1)
+            <a href="{{ $contacts->previousPageUrl() }}" class="prev">&lt;</a>
+        @endif
+
+        {{-- ページ番号 --}}
+        @for($i = 1; $i <= $contacts->lastPage(); $i++)
+            <a href="{{ $contacts->url($i) }}" class="{{ $contacts->currentPage() == $i ? 'active' : '' }}">{{ $i }}</a>
+        @endfor
+
+        {{-- 次ページ --}}
+        @if($contacts->hasMorePages())
+            <a href="{{ $contacts->nextPageUrl() }}" class="next">&gt;</a>
+        @endif
+
+        <!-- {{ $contacts->links() }}
+        <a href="#">&lt;</a>
         <a href="#" class="active">1</a>
         <a href="#">2</a>
         <a href="#">3</a>

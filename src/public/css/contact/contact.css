@@ -1,25 +1,28 @@
 
 
 h2 {
-    font-size: 24px;
-    margin-bottom: 30px;
-    font-weight: 600;
+    font-size: 35px;
+    margin: 50px auto;
+    font-weight: lighter;
     color: #8B7969;
     text-align: center;
 }
 
 /* フォーム全体 */
 form {
-    width: 70%;
-    max-width: 800px;
+    width: 972px;
     margin: 0 auto;
     text-align: left;
+}
+
+.contact__content {
+    margin-bottom: 30px;
 }
 
 /* ラベル */
 label {
     display: inline-block;
-    width: 160px;
+    width: 345px;
     font-weight: bold;
     color: #8B7969;
     vertical-align: top;
@@ -31,101 +34,126 @@ label span {
 }
 
 /* 入力欄 */
-input[type="text"],
-input[type="email"],
-textarea,
-select {
-    width: 70%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.contact__last-name,
+.contact__first-name,
+.contact__email,
+.contact__tel,
+.contact__address,
+.contact__building,
+.contact__category,
+.contact__detail {
+    padding: 10px 25px;
+    border: 1px solid #f8f8f8;
     background: #f8f8f8;
     font-size: 14px;
     color: #8B7969;
 }
 
-textarea {
-    height: 120px;
+.contact__last-name {
+    width: 285px;
+    margin-right: 45px;
+}
+
+.contact__first-name {
+    width: 285px;
+}
+
+.contact__radio__inner {
+    display: inline-block;
+    width: 130px;
+}
+
+
+
+.contact__gender {
+    margin-right: 8px;
+    accent-color: #8B7969;
+}
+
+.contact__email,
+.contact__address,
+.contact__building,
+.contact__detail {
+    width: 620px;
+}
+
+.contact__tel {
+    width: 175px;
+}
+
+.contact__tel:first-of-type {
+    margin-right: 15px;
+}
+
+.contact__tel:nth-of-type(2) {
+    margin: 0px 15px;
+}
+
+.contact__tel:last-of-type {
+    margin-left: 15px;
+}
+
+.select-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.contact__category {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px 25px;
+    padding-right: 45px;
+    /* アイコン用に余白 */
+    border: 1px solid #f8f8f8;
+    background: #f8f8f8;
+    font-size: 14px;
+    color: #8B7969;
+    width: 330px;
+}
+
+/* SVGアイコンを右端に追加 */
+.select-wrap::after {
+    content: "";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 17px;
+    height: 20px;
+    background: url("/img/icon-triangle.svg") no-repeat center;
+    background-size: contain;
+    pointer-events: none;
+}
+
+.contact__detail {
+    height: 130px;
     resize: none;
 }
 
-/* ラジオボタン */
-input[type="radio"] {
-    margin-left: 10px;
-    margin-right: 5px;
-}
-
 /* ボタン */
-button,
-a.button {
-    display: inline-block;
+button {
+    display: block;
     background-color: #8B7969;
     color: #fff;
     padding: 10px 30px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    margin: 20px 10px 0 0;
+    margin: 20px auto 30px auto;
     font-size: 14px;
     text-decoration: none;
     transition: 0.3s;
 }
 
-button:hover,
-a.button:hover {
-    background-color: #6f6054;
-}
-
-/* 確認画面のテーブル */
-table {
-    width: 70%;
-    max-width: 800px;
-    margin: 0 auto 30px auto;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 14px;
-}
-
-th,
-td {
-    border: 1px solid #e5e5e5;
-    padding: 12px 16px;
-}
-
-th {
-    width: 30%;
-    background-color: #d9c6b5;
-    color: #fff;
-    text-align: left;
-    font-weight: bold;
-}
-
-td {
-    background-color: #fff;
-    color: #8B7969;
-}
-
-/* 完了画面 */
-.thanks {
-    margin-top: 100px;
-}
-
-.thanks h2 {
-    font-size: 20px;
-    margin-bottom: 30px;
-}
-
-.thanks a {
+/* エラーバー用配置 */
+.contact__inner {
     display: inline-block;
-    background-color: #8B7969;
-    color: #fff;
-    padding: 12px 40px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: 0.3s;
 }
 
-.thanks a:hover {
-    background-color: #6f6054;
+
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 0;
 }

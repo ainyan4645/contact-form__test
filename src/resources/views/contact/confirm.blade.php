@@ -73,8 +73,8 @@
             </tr>
         </table>
 
-        <button type="submit">送信</button>
-        <button type="button" onclick="window.location='{{ url('/') }}'">修正</button>
+        <button type="submit" class="button-submit" >送信</button>
+        <button type="button" class="button-reset" onclick="window.location='{{ url('/') }}'">修正</button>
     </form>
 </div>
 @endsection

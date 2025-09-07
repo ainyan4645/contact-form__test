@@ -1,6 +1,7 @@
-.header-link {
+.header-nav__button {
     position: absolute;
-    right: 40px;
+    top: 35px;
+    right: 100px;
     color: #D9C6B5;
     border: solid 1px #D9C6B5;
     text-decoration: none;
@@ -42,8 +43,8 @@
     background-color: #FBFBFB;
     border: 1px solid #E3DED9;
     padding: 12px;
-    height: 26px;
-    width: 320px;
+    height: 50px;
+    width: 345px;
     text-align: center;
 }
 
@@ -59,6 +60,9 @@
 .search-box__gender,
 .search-box__inquiry,
 .search-box__date {
+    appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
     font-size: 17px;
     color: #8B7969;
     background-color: #F4F4F4;
@@ -69,34 +73,39 @@
     /* 余白込みでwidthを計算 */
 }
 
+.search-box__gender {
+    width: 105px;
+}
+
+.search-box__inquiry {
+    width: 225px;
+}
+
 .search-box__date {
     width: 150px;
 }
 
-/* select, date の標準アイコンを消す */
-.select-wrap select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
 /* Chrome の date のカレンダーアイコンを消す */
-/* .search-box__date::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-    padding-right: 45px;
-} */
+.search-box__date::-webkit-calendar-picker-indicator {
+    opacity: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+}
 
 /* ▼アイコンをSVGで追加 */
 .select-wrap::after {
     content: "";
     position: absolute;
-    right: 25px;
+    right: 15px;
     top: 50%;
     transform: translateY(-55%);
     width: 17.22px;
     height: 20px;
-    background: url("../img/icon-triangle.svg") no-repeat center;
+    background: url("/img/icon-triangle.svg") no-repeat center;
     background-size: contain;
     pointer-events: none;
 }
@@ -107,7 +116,7 @@
     color: #fff;
     border: none;
     padding: 10px;
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
     display: inline-block;
     width: 100px;
@@ -125,39 +134,55 @@
 
 /* ページネーション */
 .pagination {
-    text-align: right;
-    /* width: 220px; */
-    margin: 20px 0px;
     display: flex;
     justify-content: flex-end;
-}
-
-.pagination a+a {
-    border-left: none;
-}
-
-.pagination a:first-child {
-    border-radius: 7px 0 0 7px;
-}
-
-.pagination a:last-child {
-    border-radius: 0 7px 7px 0;
+    margin: 20px 0;
 }
 
 .pagination a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 30px;
     height: 30px;
-    width: 30px;
-    text-align: center;
+    font-size: 14px;
     text-decoration: none;
     color: #8B7969;
-    font-size: 18px;
-    /* padding: 0px 10px; */
     border: 1px solid #E0DFDE;
+    border-left: none;
+    /* 左のボーダーを消す */
+    transition: 0.2s;
 }
 
+/* 最初のページ番号は左ボーダーを残す */
+.pagination a:first-child {
+    border-left: 1px solid #E0DFDE;
+    border-radius: 5px 0 0 5px;
+}
+
+/* 最後のページ番号は右ボーダーを残す */
+.pagination a:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+/* ホバー */
+.pagination a:hover {
+    background-color: #8c7569;
+    color: #fff;
+}
+
+/* 現在ページ */
 .pagination a.active {
     background-color: #8c7569;
     color: #fff;
+    pointer-events: none;
+}
+
+/* 矢印用（前・次） */
+.pagination a.prev,
+.pagination a.next {
+    width: 25px;
+    font-weight: bold;
 }
 
 
@@ -171,6 +196,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd;
+    margin-bottom: 50px;
 }
 
 thead {
@@ -180,7 +206,11 @@ thead {
 
 th {
     font-weight: bold;
-    height: 40px;
+    height: 60px;
+}
+
+td {
+    height: 73px;
 }
 
 th,
@@ -188,10 +218,21 @@ td {
     border: 1px solid #ddd;
     border-left: none;
     border-right: none;
-    padding: 10px 55px;
+    padding: 10px 10px;
     text-align: left;
-    font-size: 18px;
-    height: 50px;
+    font-size: 20px;
+    /* white-space: nowrap; */
+}
+
+/* テーブルの左右端だけ padding を大きくする */
+thead th:first-child,
+tbody td:first-child {
+    padding-left: 55px;
+}
+
+thead th:last-child,
+tbody td:last-child {
+    padding-right: 25px;
 }
 
 .btn.detail {
@@ -209,7 +250,7 @@ td {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: transparent;
     justify-content: center;
     align-items: center;
 }
@@ -221,53 +262,72 @@ td {
 .modal-table {
     width: 100%;
     border-collapse: collapse;
+    border: none;
 }
 
 .modal-table th {
     text-align: left;
-    width: 40%;
+    width: 180px;
     padding: 8px 0;
-    font-weight: normal;
-    color: #555;
+    font-weight: bold;
+    color: #8B7969;
+    vertical-align: top;
 }
 
 .modal-table td {
-    padding: 8px 0;
-    color: #333;
+    padding: 8px 0 8px 45px;
+    color: #8B7969;
+    width: 415px;
+    word-wrap: break-word;
 }
 
 /* 枠線なし */
 .modal-table th,
 .modal-table td {
     border: none;
+    vertical-align: top;
+    height: 50px;
+    /* vertical-align: top; */
 }
 
 .modal-content {
     background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    width: 400px;
+    padding: 145px 65px 75px 100px;
+    /* border-radius: 12px; */
+    width: 805px;
     position: relative;
+    border: 1px solid #8B7969;
+    box-shadow: 4px 4px 0 rgba(139, 121, 100, 0.25);
 }
 
 .modal-close {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
+    top: 30px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 33px;
+    font-size: 30px;
     cursor: pointer;
-    color: #666;
+    color: #8B7969;
+    border: 1px solid #8B7969;
 }
 
 .btn.delete {
     background: #d9534f;
     color: #fff;
     border: none;
+    width: 75px;
+    height: 40px;
     padding: 8px 16px;
-    margin-top: 15px;
+    margin: 15px auto 0;
+    display: block;
     cursor: pointer;
-    border-radius: 6px;
 }
+
 .btn.delete:hover {
     background: #c9302c;
 }

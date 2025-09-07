@@ -1,6 +1,6 @@
 .header-link {
     position: absolute;
-    right: 40px;
+    right: 100px;
     color: #D9C6B5;
     border: solid 1px #D9C6B5;
     text-decoration: none;
@@ -30,27 +30,30 @@ body {
 /* フォーム枠 */
 .form-box {
     background: #fff;
-    max-width: 445px;
+    max-width: 736px;
     margin: 0 auto 75px;
     padding: 75px 145px 60px;
     border: 1px solid #C5B9B0;
     border-radius: 7px;
-    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .form-box form {
     display: flex;
     flex-direction: column;
-    /* padding: 20%; */
 }
 
 .form-box label {
     /* bodyのフォントが継承されていたため、ゴシック調に再指定 */
     font-family: 'Noto Sans JP', sans-serif;
     font-weight: 400;
-
-    margin-bottom: 6px;
+    margin-bottom: 14px;
     font-size: 25px;
+}
+
+.form-box__input__inner {
+    width: 100%;
+    display: block;
+    margin-bottom: 45px;
 }
 
 .form-box input {
@@ -58,11 +61,11 @@ body {
     font-family: "Inika", serif;
     font-weight: 400;
     font-style: regular;
-
+    width: 100%;
+    box-sizing: border-box;
     background-color: #F4F4F4;
     font-size: 14px;
-    margin-bottom: 45px;
-    padding: 25px 18px;
+    padding: 20px 25px;
     border: 1px solid #F4F4F4;
     font-weight: lighter;
 }
@@ -86,4 +89,11 @@ body {
     font-size: 20px;
     cursor: pointer;
     display: inline-block;
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
