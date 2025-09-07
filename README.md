@@ -1,12 +1,12 @@
 # お問い合わせフォーム
 
 ## 環境構築
-#### Dockerの起動
+### Dockerビルド
 1. git clone git@github.com:ainyan4645/contact-form__test.git
 2. cd contact-form__test
 3. docker-compose up -d --build
 
-#### Laravel環境構築
+### Laravel環境構築
 1. docker-compose exec php bash
 2. composer install
 3. exit
@@ -14,14 +14,11 @@
 5. cp .env.example .env
 6. docker-compose exec php bash
 7. php artisan key:generate
-8. composer require laravel/fortify
-9. php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
-10. php artisan migrate
-11. php artisan db:seed
+8.  php artisan migrate
+9.  php artisan db:seed
 
-
-- migrationとシーディングは後で。
 - 時刻のずれは大丈夫？
+- php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"（config/fortify.phpが含まれていなければやる）
  ```
  php artisan tinker
  echo Carbon\Carbon::now();

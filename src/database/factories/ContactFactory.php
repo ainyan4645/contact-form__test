@@ -28,10 +28,10 @@ class ContactFactory extends Factory
             'last_name'   => $this->faker->lastName,
             'gender'      => $this->faker->numberBetween(1, 3), // 1=男性,2=女性,3=その他
             'email'       => $this->faker->unique()->safeEmail,
-            'tel'         => $this->faker->phoneNumber,
+            'tel'         => preg_replace('/\D/', '', $this->faker->phoneNumber),
             'address'     => $this->faker->address,
             'building'    => $this->faker->optional()->secondaryAddress, // NULL or 値
-            'detail'      => $this->faker->realText(200), // お問合せ内容
+            'detail'      => $this->faker->realText(120), // お問合せ内容
         ];
     }
 }

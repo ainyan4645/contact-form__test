@@ -6,12 +6,11 @@
 
 @section('navi')
 @if (Auth::check())
-<form class="form" action="/logout" method="post">
+<form class="form" action="{{ route('logout') }}" method="post">
     @csrf
     <button class="header-nav__button">logout</button>
 </form>
 @endif
-<!-- <a href="logout.html" class="header-link">logout</a> -->
 @endsection
 
 @section('content')
@@ -43,11 +42,11 @@
             <input class="search-box__date" type="date" name="date">
         </div>
         <button type="submit" class="btn">検索</button>
-        <button type="reset" class="btn reset">リセット</button>
+        <button type="button" class="btn reset">リセット</button>
     </form>
 
     <div class="pagination">
-         {{ $contacts->links() }}
+        {{ $contacts->links() }}
         <!-- <a href="#">&lt;</a>
         <a href="#" class="active">1</a>
         <a href="#">2</a>
@@ -72,18 +71,26 @@
                 @foreach($contacts as $contact)
                 <tr>
                     <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
-                    <td>{{ $contact->gender }}</td>
+                    <td>
+                        @if($contact->gender == 1) 男性
+                        @elseif($contact->gender == 2) 女性
+                        @elseif($contact->gender == 3) その他
+                        @endif
+                    </td>
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->category->content }}</td>
                     <td>
-                        <button 
+                        <button
                             class="btn detail"
                             data-id="{{ $contact->id }}"
                             data-name="{{ $contact->last_name }} {{ $contact->first_name }}"
                             data-email="{{ $contact->email }}"
                             data-gender="{{ $contact->gender }}"
+                            data-tel="{{ $contact->tel ?? '' }}"
+                            data-address="{{ $contact->address ?? '' }}"
+                            data-building="{{ $contact->building ?? '' }}"
                             data-category="{{ $contact->category->content }}"
-                            data-content="{{ $contact->content }}"
+                            data-content="{{ $contact->detail }}"
                         >
                             詳細
                         </button>
@@ -96,11 +103,40 @@
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span id="modal-close" class="modal-close">&times;</span>
-                <p><strong>名前：</strong><span id="modal-name"></span></p>
-                <p><strong>メール：</strong><span id="modal-email"></span></p>
-                <p><strong>性別：</strong><span id="modal-gender"></span></p>
-                <p><strong>お問い合わせ種類：</strong><span id="modal-category"></span></p>
-                <p><strong>内容：</strong><span id="modal-content"></span></p>
+                <table class="modal-table">
+                    <tr>
+                        <th>お名前</th>
+                        <td id="modal-name"></td>
+                    </tr>
+                    <tr>
+                        <th>性別</th>
+                        <td id="modal-gender"></td>
+                    </tr>
+                    <tr>
+                        <th>メールアドレス</th>
+                        <td id="modal-email"></td>
+                    </tr>
+                    <tr>
+                        <th>電話番号</th>
+                        <td id="modal-tel"></td>
+                    </tr>
+                    <tr>
+                        <th>住所</th>
+                        <td id="modal-address"></td>
+                    </tr>
+                    <tr>
+                        <th>建物名</th>
+                        <td id="modal-building"></td>
+                    </tr>
+                    <tr>
+                        <th>お問い合わせの種類</th>
+                        <td id="modal-category"></td>
+                    </tr>
+                    <tr>
+                        <th>お問い合わせ内容</th>
+                        <td id="modal-detail"></td>
+                    </tr>
+                </table>
                 <form id="modal-delete-form" method="POST">
                     @csrf
                     @method('DELETE')
@@ -112,6 +148,15 @@
 </main>
 
 <script>
+// リセットボタン
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector(".btn.reset").addEventListener("click", function() {
+        // 検索ページにリダイレクト
+        window.location.href = "/search";
+    });
+});
+
+// モーダルウィンドウ
 document.addEventListener("DOMContentLoaded", function() {
     const modal = document.getElementById("modal");
     const closeBtn = document.getElementById("modal-close");
@@ -119,17 +164,29 @@ document.addEventListener("DOMContentLoaded", function() {
     const nameField = document.getElementById("modal-name");
     const emailField = document.getElementById("modal-email");
     const genderField = document.getElementById("modal-gender");
+    const telField = document.getElementById("modal-tel");
+    const addressField = document.getElementById("modal-address");
+    const buildingField = document.getElementById("modal-building");
     const categoryField = document.getElementById("modal-category");
-    const contentField = document.getElementById("modal-content");
+    const detailField = document.getElementById("modal-detail");
     const deleteForm = document.getElementById("modal-delete-form");
+
+    const genderMap = {
+        1: "男性",
+        2: "女性",
+        3: "その他"
+    };
 
     document.querySelectorAll(".btn.detail").forEach(btn => {
         btn.addEventListener("click", function() {
             nameField.textContent = this.dataset.name;
             emailField.textContent = this.dataset.email;
-            genderField.textContent = this.dataset.gender;
+            genderField.textContent = genderMap[this.dataset.gender] || "未設定";
+            telField.textContent = this.dataset.tel || "-";
+            addressField.textContent = this.dataset.address || "-";
+            buildingField.textContent = this.dataset.building || "-";
             categoryField.textContent = this.dataset.category;
-            contentField.textContent = this.dataset.content;
+            detailField.textContent = this.dataset.content.replace(/\\n/g, '\n');
 
             deleteForm.action = `/contacts/${this.dataset.id}`;
 

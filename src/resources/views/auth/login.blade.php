@@ -5,7 +5,7 @@
 @endsection
 
 @section('navi')
-<a href="register.html" class="header-link">register</a>
+<a href="{{ route('register') }}" class="header-link">register</a>
 @endsection
 
 @section('content')
@@ -16,10 +16,16 @@
         <form action="{{ route('login') }}" method="post">
             @csrf
             <label for="email">メールアドレス</label>
-            <input type="email" name="email" id="email" placeholder="例: test@example.com" required autofocus>
+            <input type="email" name="email" id="email" value="{{ old('email') }}" placeholder="例: test@example.com" autofocus>
+            @error('email')
+            <div class="error">{{ $message }}</div>
+            @enderror
 
             <label for="password">パスワード</label>
-            <input type="password" name="password" id="password" placeholder="例: coachtech1106" required>
+            <input type="password" name="password" id="password" placeholder="例: coachtech1106">
+            @error('password')
+            <div class="error">{{ $message }}</div>
+            @enderror
 
             <button type="submit" class="btn">ログイン</button>
         </form>

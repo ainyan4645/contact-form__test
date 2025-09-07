@@ -12,17 +12,16 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
-
     /**
      * Bootstrap any application services.
      */
@@ -41,11 +40,18 @@ class FortifyServiceProvider extends ServiceProvider
                 return view('auth.login');
             });
 
-        // ログイン処理1分あたり10回制限
-        RateLimiter::for('login', function (Request $request) {
-            $email = (string) $request->email;
+        // ログイン後は管理画面へ
+        Fortify::authenticateUsing(function ($request) {
+            // ログイン処理に LoginRequest を適用
+            app(LoginRequest::class)->validateResolved();
+            // ユーザ取得
+            $user = User::where('email', $request->email)->first();
+            // パスワードチェック
+            if ($user && Hash::check($request->password, $user->password)) {
+                return $user;
+            }
 
-            return Limit::perMinute(10)->by($email . $request->ip());
+            return null; // 認証失敗時
         });
     }
 }

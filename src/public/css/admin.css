@@ -81,11 +81,11 @@
 }
 
 /* Chrome の date のカレンダーアイコンを消す */
-.search-box__date::-webkit-calendar-picker-indicator {
+/* .search-box__date::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
     padding-right: 45px;
-}
+} */
 
 /* ▼アイコンをSVGで追加 */
 .select-wrap::after {
@@ -216,6 +216,30 @@ td {
 
 .modal.show {
     display: flex;
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modal-table th {
+    text-align: left;
+    width: 40%;
+    padding: 8px 0;
+    font-weight: normal;
+    color: #555;
+}
+
+.modal-table td {
+    padding: 8px 0;
+    color: #333;
+}
+
+/* 枠線なし */
+.modal-table th,
+.modal-table td {
+    border: none;
 }
 
 .modal-content {
